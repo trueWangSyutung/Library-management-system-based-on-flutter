@@ -14,8 +14,6 @@ class TwoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar:
-            PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0)),
         body: RegistPage(),
       ),
       theme: ThemeData(
@@ -24,6 +22,7 @@ class TwoPage extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
       ),
     );
   }

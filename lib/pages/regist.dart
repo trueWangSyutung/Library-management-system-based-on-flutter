@@ -7,8 +7,6 @@ class Regist2Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar:
-            PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0)),
         body: LoginPage(),
       ),
       theme: ThemeData(
@@ -17,6 +15,7 @@ class Regist2Page extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
       ),
     );
   }

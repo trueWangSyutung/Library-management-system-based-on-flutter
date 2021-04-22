@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'GlobalNum/Numbers.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,8 +29,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar:
-            PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0)),
         body: SingleChildScrollView(
           child: HomePage(),
         ),
@@ -39,8 +38,11 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+          brightness: Brightness.dark,
+          primaryColor: Colors.white,
+          scaffoldBackgroundColor: Colors.black,
+          cardColor: Colors.lightBlue[100],
+          backgroundColor: Colors.black),
     );
   }
 }
@@ -59,106 +61,107 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      child: Column(
-        children: <Widget>[
+        alignment: Alignment.center,
+        child: Stack(children: <Widget>[
           Container(
-            width: 300,
-            height: 40,
-            margin: EdgeInsets.all(15),
+            child: Image.asset("images/m.png"),
+            alignment: Alignment.topCenter,
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
             child: Text(
               "iFlutter 图书借阅系统",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30, color: Colors.black),
             ),
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-                color: Colors.lightBlue,
-                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+            alignment: Alignment.topCenter,
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 130, 0, 130),
-            child: Image.asset("images/flutter-hero-laptop2.png"),
-            width: 300,
-            alignment: Alignment.center,
-            height: 300,
-            decoration: new BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(250.0))),
-          ),
-          Container(
-            child: FlatButton(
-              child: Text(
-                "登    录",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30),
+          //
+          Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 100, 0, 150),
+                child: Image.asset("images/flutter-hero-laptop2.png"),
+                width: 300,
+                alignment: Alignment.center,
+                height: 300,
+                decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(250.0))),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => TwoPage()));
-              },
-              onLongPress: () {
-                color1 = Colors.lightBlue;
-                color2 = Colors.grey;
-              },
-              onHighlightChanged: (value) {},
-            ),
-            width: 300,
-            height: 60,
-            decoration: new BoxDecoration(
-                color: color1,
-                borderRadius: BorderRadius.all(Radius.circular(30.0))),
-          ),
-          Container(
-            child: FlatButton(
-              child: Text(
-                "注    册",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25),
+              Container(
+                child: FlatButton(
+                  child: Text(
+                    "登    录",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => TwoPage()));
+                  },
+                  onLongPress: () {
+                    color1 = Colors.lightBlue;
+                    color2 = Colors.grey;
+                  },
+                  onHighlightChanged: (value) {},
+                ),
+                width: 300,
+                height: 60,
+                decoration: new BoxDecoration(
+                    color: color1,
+                    borderRadius: BorderRadius.all(Radius.circular(30.0))),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Regist2Page()));
-              },
-              onLongPress: () {
-                color2 = Colors.lightBlue;
-                color1 = Colors.grey;
-              },
-              onHighlightChanged: (value) {},
-            ),
-            width: 300,
-            height: 60,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
-            alignment: Alignment.center,
-            decoration: new BoxDecoration(
-                color: color2,
-                borderRadius: BorderRadius.all(Radius.circular(30.0))),
-          ),
-          Container(
-            child: FlatButton(
-              child: Text(
-                "不想注册？先到处看看吧。",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15),
+              Container(
+                child: FlatButton(
+                  child: Text(
+                    "注    册",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 25),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Regist2Page()));
+                  },
+                  onLongPress: () {
+                    color2 = Colors.lightBlue;
+                    color1 = Colors.grey;
+                  },
+                  onHighlightChanged: (value) {},
+                ),
+                width: 300,
+                height: 60,
+                margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                alignment: Alignment.center,
+                decoration: new BoxDecoration(
+                    color: color2,
+                    borderRadius: BorderRadius.all(Radius.circular(30.0))),
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => Welcome(
-                              name: "访客用户",
-                            )));
-              },
-              onLongPress: () {},
-              onHighlightChanged: (value) {},
-            ),
-            alignment: Alignment.center,
+              Container(
+                child: FlatButton(
+                  child: Text(
+                    "不想注册？先到处看看吧。",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 15),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) => Welcome(
+                                  name: "访客用户",
+                                )));
+                  },
+                  onLongPress: () {},
+                  onHighlightChanged: (value) {},
+                ),
+                alignment: Alignment.center,
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ]));
   }
 }

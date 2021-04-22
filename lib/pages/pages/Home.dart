@@ -27,6 +27,20 @@ class HomepageWidgetState extends State<HomepageWidget> {
     }
   }
 
+  String getVerText(String string) {
+    var zm = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
+    var s = string.split("");
+    var q = "";
+    for (int i = 0; i < s.length; i++) {
+      if (zm.contains(s[i])) {
+        q = q + s[i];
+      } else {
+        q = q + "\n${s[i]}";
+      }
+    }
+    return q;
+  }
+
   Future<List> getNewBook() async {
     if (GlobalNumbers.book_list.length != 0) {
     } else {
@@ -59,55 +73,56 @@ class HomepageWidgetState extends State<HomepageWidget> {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
-        return FlatButton(
-          onPressed: () {},
-          child: Container(
-            child: Row(
-              children: [
-                Container(
-                  width: 125,
-                  height: 200,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, Random().nextInt(255),
-                          Random().nextInt(255), Random().nextInt(255)),
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                  child: Text(
-                    GlobalNumbers.book_list[index].bookName,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontSize: 25,
+        return Card(
+          clipBehavior: Clip.antiAlias,
+          elevation: 20.0,
+          child: FlatButton(
+            onPressed: () {},
+            child: Container(
+              child: Row(
+                children: [
+                  Container(
+                    width: 125,
+                    height: 190,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, Random().nextInt(255),
+                            Random().nextInt(255), Random().nextInt(255)),
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    child: Text(
+                      getVerText(GlobalNumbers.book_list[index].bookName),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                  width: 198,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        GlobalNumbers.book_list[index].bookName,
-                        style: TextStyle(
-                          fontSize: 30,
+                  Container(
+                    margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                    width: 190,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          GlobalNumbers.book_list[index].bookName,
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
                         ),
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
-                      ),
-                      Text(
-                        GlobalNumbers.book_list[index].author,
-                        style: TextStyle(
-                          fontSize: 30,
+                        Text(
+                          GlobalNumbers.book_list[index].author,
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
                         ),
-                        maxLines: 1,
-                        textAlign: TextAlign.left,
-                      ),
-                      Text(
+                        Text(
                           "上架日期：" +
                               GlobalNumbers.book_list[index].bookPubdate +
                               "\n货架号：" +
@@ -115,18 +130,21 @@ class HomepageWidgetState extends State<HomepageWidget> {
                               "\n当前状态：" +
                               getShifoujiechu(
                                   GlobalNumbers.book_list[index].shifoujiechu),
-                          style: TextStyle(fontSize: 15)),
-                    ],
-                  ),
-                )
-              ],
+                          style: TextStyle(fontSize: 15),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              height: 200,
+              margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: EdgeInsets.all(10),
             ),
-            height: 200,
-            margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.lightBlue[200],
-                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
         );
       },
@@ -149,7 +167,7 @@ class HomepageWidgetState extends State<HomepageWidget> {
                   Container(
                     width: 300,
                     height: 300,
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(6),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

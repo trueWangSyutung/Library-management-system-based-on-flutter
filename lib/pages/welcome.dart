@@ -1,5 +1,10 @@
+import 'dart:convert';
+
+import 'package:demo01/GlobalNum/Numbers.dart';
+import 'package:demo01/json/LoginBean.dart';
 import 'package:demo01/pages/pages/Home.dart';
 import 'package:demo01/pages/pages/borrow.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/MinePage.dart';
@@ -17,6 +22,8 @@ class Welcome extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
+        cardColor: Colors.grey[900],
+        scaffoldBackgroundColor: Colors.black,
       ),
     );
   }
@@ -44,6 +51,24 @@ class _WelcomePageState extends State<WelcomePage> {
       title: Text("我的"),
     ),
   ];
+  Future<List> _login(String username, String password) async {
+    try {
+      Response response = await Dio().get(
+          'http://bbs.we-chat.cn/login.php?username=' +
+              username +
+              "&password=" +
+              password);
+      Map userMap = json.decode(response.toString());
+      var data = new Login.fromJson(userMap);
+      var list = [];
+      list.add(data.data.name);
+      list.add(data.data.quanxian);
+      list.add(data.data.user);
+      list.add(data.code);
+
+      return list;
+    } catch (e) {}
+  }
 
   final bodyLists = [HomepageWidget(), BorrowpageWidget(), MinespageWidget()];
   get editingController => null;
@@ -51,6 +76,13 @@ class _WelcomePageState extends State<WelcomePage> {
   get editingController2 => null;
   @override
   Widget build(BuildContext context) {
+    _login(GlobalNumbers.username, GlobalNumbers.password).then((value) {
+      var b = value;
+      GlobalNumbers.name = b[0];
+      GlobalNumbers.quanxian = b[1];
+      GlobalNumbers.user = b[2];
+      GlobalNumbers.code = b[3];
+    });
     return Scaffold(
       appBar: PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0)),
       bottomNavigationBar: BottomNavigationBar(
