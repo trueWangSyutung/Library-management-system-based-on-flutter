@@ -15,17 +15,25 @@ class Welcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: WelcomePage(),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.blue,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        cardColor: Colors.grey[900],
-        scaffoldBackgroundColor: Colors.black,
-      ),
-    );
+        home: WelcomePage(),
+        theme: ThemeData(
+            brightness: Brightness.light,
+            primaryColor: Colors.blue,
+            textTheme: TextTheme(
+              headline: TextStyle(color: Colors.black),
+              title: TextStyle(color: Colors.black),
+              body1: TextStyle(color: Colors.black),
+            )),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          cardColor: Colors.grey[900],
+          textTheme: TextTheme(
+            headline: TextStyle(color: Colors.white),
+            title: TextStyle(color: Colors.white),
+            body1: TextStyle(color: Colors.white),
+          ),
+          scaffoldBackgroundColor: Colors.black,
+        ));
   }
 }
 

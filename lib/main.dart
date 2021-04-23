@@ -28,22 +28,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: SingleChildScrollView(
-          child: HomePage(),
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: HomePage(),
+          ),
         ),
-      ),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.blue,
-      ),
-      darkTheme: ThemeData(
+        theme: ThemeData(
+            brightness: Brightness.light,
+            primaryColor: Colors.blue,
+            textTheme: TextTheme(
+              headline: TextStyle(color: Colors.black),
+              title: TextStyle(color: Colors.black),
+              body1: TextStyle(color: Colors.black),
+            )),
+        darkTheme: ThemeData(
           brightness: Brightness.dark,
-          primaryColor: Colors.white,
+          cardColor: Colors.grey[900],
+          textTheme: TextTheme(
+            headline: TextStyle(color: Colors.white),
+            title: TextStyle(color: Colors.white),
+            body1: TextStyle(color: Colors.white),
+          ),
           scaffoldBackgroundColor: Colors.black,
-          cardColor: Colors.lightBlue[100],
-          backgroundColor: Colors.black),
-    );
+        ));
   }
 }
 

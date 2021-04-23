@@ -57,401 +57,115 @@ class MinespageWidgetState extends State<MinespageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List>(
-        future: _login(GlobalNumbers.username, GlobalNumbers.password),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            var b = snapshot.data;
-
-            if (b != null) {
-              GlobalNumbers.name = b[0];
-              GlobalNumbers.quanxian = b[1];
-              GlobalNumbers.user = b[2];
-              GlobalNumbers.code = b[3];
-              if (GlobalNumbers.quanxian == "1") {
-                return SingleChildScrollView(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        width: 300,
-                        height: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              child: Text(GlobalNumbers.name.split('')[0],
-                                  style: TextStyle(fontSize: 60)),
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                  color: Colors.lightBlue,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(45.0))),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  GlobalNumbers.name,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 30),
-                                ),
-                                Text(
-                                  getQuanxian(GlobalNumbers.quanxian),
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                Text(
-                                  "账号：" + GlobalNumbers.user,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 20),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0))),
-                      ),
-                      Container(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                  child:
-                                      Divider(height: 2.0, color: Colors.black),
-                                ),
-                            itemCount: setInformation.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return FlatButton(
-                                onPressed: () {},
-                                child: Text(setInformation[index],
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20)),
-                              );
-                            }),
-                        margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                      Container(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                  child:
-                                      Divider(height: 2.0, color: Colors.black),
-                                ),
-                            itemCount: information.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return FlatButton(
-                                onPressed: () {},
-                                child: Text(information[index],
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20)),
-                              );
-                            }),
-                        margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                      Container(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                  child:
-                                      Divider(height: 2.0, color: Colors.black),
-                                ),
-                            itemCount: admin.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return FlatButton(
-                                onPressed: () {},
-                                child: Text(admin[index],
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20)),
-                              );
-                            }),
-                        margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                    ],
-                  ),
-                ));
-              } else {
-                return SingleChildScrollView(
-                    child: Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        width: 300,
-                        height: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              width: 90,
-                              height: 90,
-                              child: Text(GlobalNumbers.name.split('')[0],
-                                  style: TextStyle(fontSize: 60)),
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                  color: Colors.lightBlue,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(45.0))),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  GlobalNumbers.name,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 30),
-                                ),
-                                Text(
-                                  getQuanxian(GlobalNumbers.quanxian),
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                                Text(
-                                  "账号：" + GlobalNumbers.user,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(fontSize: 20),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0))),
-                      ),
-                      Container(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                  child:
-                                      Divider(height: 2.0, color: Colors.black),
-                                ),
-                            itemCount: setInformation.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return FlatButton(
-                                onPressed: () {},
-                                child: Text(setInformation[index],
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20)),
-                              );
-                            }),
-                        margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                      Container(
-                        child: ListView.separated(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                  child:
-                                      Divider(height: 2.0, color: Colors.black),
-                                ),
-                            itemCount: information.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return FlatButton(
-                                onPressed: () {},
-                                child: Text(information[index],
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 20)),
-                              );
-                            }),
-                        margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        decoration: new BoxDecoration(
-                            color: Colors.lightBlue[200],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0))),
-                      ),
-                    ],
-                  ),
-                ));
-              }
-            } else {
-              return SingleChildScrollView(
-                  child: Container(
-                alignment: Alignment.center,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      width: 300,
-                      height: 300,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 90,
-                            height: 90,
-                            child: Text(GlobalNumbers.name.split('')[0],
-                                style: TextStyle(fontSize: 60)),
-                            alignment: Alignment.center,
-                            decoration: new BoxDecoration(
-                                color: Colors.lightBlue,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(45.0))),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                GlobalNumbers.name,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 30),
-                              ),
-                              Text(
-                                getQuanxian(GlobalNumbers.quanxian),
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              Text(
-                                "账号：" + GlobalNumbers.user,
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontSize: 20),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      decoration: new BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(15.0))),
-                    ),
-                    Container(
-                      child: ListView.separated(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          separatorBuilder: (BuildContext context, int index) =>
-                              Container(
-                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                child:
-                                    Divider(height: 2.0, color: Colors.black),
-                              ),
-                          itemCount: setInformation.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FlatButton(
-                              onPressed: () {},
-                              child: Text(setInformation[index],
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20)),
-                            );
-                          }),
-                      margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      decoration: new BoxDecoration(
-                          color: Colors.lightBlue[200],
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                    ),
-                    Container(
-                      child: ListView.separated(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          separatorBuilder: (BuildContext context, int index) =>
-                              Container(
-                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                                child:
-                                    Divider(height: 2.0, color: Colors.black),
-                              ),
-                          itemCount: information.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FlatButton(
-                              onPressed: () {},
-                              child: Text(information[index],
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20)),
-                            );
-                          }),
-                      margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      decoration: new BoxDecoration(
-                          color: Colors.lightBlue[200],
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                    ),
-                  ],
-                ),
-              ));
-            }
-          } else {
-            return Center(
-              child: Container(
-                  width: 200,
-                  height: 200,
-                  padding: EdgeInsets.all(20),
+    return SingleChildScrollView(
+        child: Container(
+      alignment: Alignment.center,
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: 300,
+            height: 300,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  width: 90,
+                  height: 90,
+                  child: Text(GlobalNumbers.name.split('')[0],
+                      style: TextStyle(fontSize: 60)),
                   alignment: Alignment.center,
                   decoration: new BoxDecoration(
-                      color: Colors.lightBlue[300],
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.all(Radius.circular(45.0))),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      GlobalNumbers.name,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    Text(
+                      getQuanxian(GlobalNumbers.quanxian),
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Text(
+                      "账号：" + GlobalNumbers.user,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 20),
+                    )
+                  ],
+                ),
+              ],
+            ),
+            alignment: Alignment.center,
+            margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+            decoration: new BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          ),
+          Card(
+            clipBehavior: Clip.antiAlias,
+            elevation: 20.0,
+            child: Container(
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  separatorBuilder: (BuildContext context, int index) =>
                       Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
-                        child: CircularProgressIndicator(
-                          strokeWidth: 10,
-                          backgroundColor: Colors.greenAccent[200],
-                        ),
+                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Divider(height: 2.0, color: Colors.grey),
                       ),
-                      Text(
-                        "加载中",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      )
-                    ],
-                  )),
-            );
-          }
-        });
+                  itemCount: setInformation.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FlatButton(
+                      onPressed: () {},
+                      child: Text(setInformation[index],
+                          style: TextStyle(fontSize: 20)),
+                    );
+                  }),
+              margin: EdgeInsets.fromLTRB(18, 0, 18, 0),
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            ),
+          ),
+          Card(
+            clipBehavior: Clip.antiAlias,
+            elevation: 20.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+            ),
+            child: Container(
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  separatorBuilder: (BuildContext context, int index) =>
+                      Container(
+                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                        child: Divider(height: 2.0, color: Colors.grey),
+                      ),
+                  itemCount: information.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FlatButton(
+                      onPressed: () {},
+                      child: Text(information[index],
+                          style: TextStyle(fontSize: 20)),
+                    );
+                  }),
+              margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+              decoration: new BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }

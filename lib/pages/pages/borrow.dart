@@ -87,233 +87,253 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                     ),
                     alignment: Alignment.centerLeft,
                   ),
-                  Container(
-                    margin: EdgeInsets.all(6),
-                    decoration: new BoxDecoration(
-                        color: Colors.lightBlue[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
                     child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "欢迎来到iFultter借阅中心\n您已借阅$b本书",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 25),
+                      margin: EdgeInsets.all(6),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "欢迎来到iFultter借阅中心\n您已借阅$b本书",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(fontSize: 25),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                Container(
+                                  width: 90,
+                                  height: 90,
+                                  child: Text(GlobalNumbers.name.split('')[0],
+                                      style: TextStyle(fontSize: 60)),
+                                  alignment: Alignment.center,
+                                  decoration: new BoxDecoration(
+                                      color: Colors.lightBlue,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(45.0))),
+                                ),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                height: 20,
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  child: LinearProgressIndicator(
+                                    value: r,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.blueGrey[600]),
+                                    backgroundColor: Colors.blue,
                                   ),
-                                ],
-                              ),
-                              Container(
-                                width: 90,
-                                height: 90,
-                                child: Text(GlobalNumbers.name.split('')[0],
-                                    style: TextStyle(fontSize: 60)),
+                                )),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    child: Container(
+                      height: 85,
+                      margin: EdgeInsets.all(5),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
                                 alignment: Alignment.center,
-                                decoration: new BoxDecoration(
-                                    color: Colors.lightBlue,
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(45.0))),
-                              ),
-                            ],
-                          ),
-                          Container(
-                              margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                              height: 20,
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: LinearProgressIndicator(
-                                  value: r,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.blueGrey[600]),
-                                  backgroundColor: Colors.blue,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.network_wifi,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "网上预约",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_books,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "线下借书",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_add,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "求上架",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.bookmark_border,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "图书总览",
+                                      style: TextStyle(),
+                                    )
+                                  ],
                                 ),
                               )),
                         ],
                       ),
                     ),
                   ),
-                  Container(
-                    height: 85,
-                    margin: EdgeInsets.all(5),
-                    decoration: new BoxDecoration(
-                        color: Colors.lightBlue[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.network_wifi,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "网上预约",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_books,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "线下借书",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_add,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "求上架",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.bookmark_border,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "图书总览",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                      ],
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
                     ),
-                  ),
-                  Container(
-                    height: 85,
-                    margin: EdgeInsets.all(5),
-                    decoration: new BoxDecoration(
-                        color: Colors.lightBlue[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 80,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.network_wifi,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "预约管理",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 80,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_books,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "线下借书后台",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 80,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_add,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "求上架审核",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                      ],
+                    child: Container(
+                      height: 85,
+                      margin: EdgeInsets.all(5),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 80,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.network_wifi,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "预约管理",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 80,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_books,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "线下借书后台",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 80,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_add,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "求上架审核",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -350,158 +370,171 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                     ),
                     alignment: Alignment.centerLeft,
                   ),
-                  Container(
-                    margin: EdgeInsets.all(6),
-                    decoration: new BoxDecoration(
-                        color: Colors.lightBlue[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
                     child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "欢迎来到iFultter借阅中心\n您已借阅$b本书",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 25),
+                      margin: EdgeInsets.all(6),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "欢迎来到iFultter借阅中心\n您已借阅$b本书",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(fontSize: 25),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                Container(
+                                  width: 90,
+                                  height: 90,
+                                  child: Text(GlobalNumbers.name.split('')[0],
+                                      style: TextStyle(fontSize: 60)),
+                                  alignment: Alignment.center,
+                                  decoration: new BoxDecoration(
+                                      color: Colors.lightBlue,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(45.0))),
+                                ),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                height: 20,
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  child: LinearProgressIndicator(
+                                    value: r,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.blueGrey[600]),
+                                    backgroundColor: Colors.blue,
                                   ),
-                                ],
-                              ),
-                              Container(
-                                width: 90,
-                                height: 90,
-                                child: Text(GlobalNumbers.name.split('')[0],
-                                    style: TextStyle(fontSize: 60)),
+                                )),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    elevation: 20.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    ),
+                    child: Container(
+                      height: 85,
+                      margin: EdgeInsets.all(5),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
                                 alignment: Alignment.center,
-                                decoration: new BoxDecoration(
-                                    color: Colors.lightBlue,
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(45.0))),
-                              ),
-                            ],
-                          ),
-                          Container(
-                              margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                              height: 20,
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: LinearProgressIndicator(
-                                  value: r,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.blueGrey[600]),
-                                  backgroundColor: Colors.blue,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.network_wifi,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "网上预约",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_books,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "线下借书",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.library_add,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "求上架",
+                                      style: TextStyle(),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          FlatButton(
+                              onPressed: () {},
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                margin: EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.bookmark_border,
+                                      color: Colors.blue,
+                                    ),
+                                    Text(
+                                      "图书总览",
+                                      style: TextStyle(),
+                                    )
+                                  ],
                                 ),
                               )),
                         ],
                       ),
-                    ),
-                  ),
-                  Container(
-                    height: 85,
-                    margin: EdgeInsets.all(5),
-                    decoration: new BoxDecoration(
-                        color: Colors.lightBlue[200],
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 60,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.network_wifi,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "网上预约",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_books,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "线下借书",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_add,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "求上架",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                        FlatButton(
-                            onPressed: () {},
-                            child: Container(
-                              width: 50,
-                              height: 50,
-                              margin: EdgeInsets.all(5),
-                              alignment: Alignment.center,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.library_add,
-                                    color: Colors.blue,
-                                  ),
-                                  Text(
-                                    "图书总览",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
-                              ),
-                            )),
-                      ],
                     ),
                   ),
                 ],
@@ -533,7 +566,9 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                     ),
                     Text(
                       "加载中",
-                      style: TextStyle(fontSize: 15, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
                     )
                   ],
                 )),
