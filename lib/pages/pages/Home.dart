@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:demo01/GlobalNum/Numbers.dart';
 import 'package:demo01/json/Book.dart';
 import 'package:demo01/json/BooksBean.dart';
+import 'package:demo01/pages/pages/pages/books.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,9 @@ class HomepageWidget extends StatefulWidget {
 
 class HomepageWidgetState extends State<HomepageWidget> {
   int count = 0;
-  var isjiechu = ["已借出", "未借出"];
-  String getShifoujiechu(String i) {
+  static String getShifoujiechu(String i) {
+    var isjiechu = ["已借出", "未借出"];
+
     if (i == "0") {
       return isjiechu[1];
     } else {
@@ -27,7 +29,7 @@ class HomepageWidgetState extends State<HomepageWidget> {
     }
   }
 
-  String getVerText(String string) {
+  static String getVerText(String string) {
     var zm = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
     var s = string.split("");
     var q = "";
@@ -75,9 +77,15 @@ class HomepageWidgetState extends State<HomepageWidget> {
       itemBuilder: (BuildContext context, int index) {
         return Card(
           clipBehavior: Clip.antiAlias,
-          elevation: 20.0,
           child: FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookWidget(
+                            book: GlobalNumbers.book_list[index],
+                          )));
+            },
             child: Container(
               child: Row(
                 children: [
@@ -165,27 +173,13 @@ class HomepageWidgetState extends State<HomepageWidget> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    width: 300,
-                    height: 300,
-                    margin: EdgeInsets.all(6),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "新 书 上 架",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: 60),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
                     alignment: Alignment.centerLeft,
-                    decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    height: 300,
+                    child: Text(
+                      "新 书 上 架",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 60),
+                    ),
                   ),
                   Container(
                     child: getListView(),

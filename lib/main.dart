@@ -33,6 +33,11 @@ class MyApp extends StatelessWidget {
             child: HomePage(),
           ),
         ),
+        routes: {
+          '/welcome': (context) => Welcome(
+                name: "syu",
+              )
+        },
         theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: Colors.blue,
@@ -155,10 +160,11 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 15),
                   ),
                   onPressed: () {
+                    // Navigator.pushAndRemoveUntil(context,  '/welcome', (route) => false);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => Welcome(
+                            builder: (context) => Welcome(
                                   name: "访客用户",
                                 )));
                   },

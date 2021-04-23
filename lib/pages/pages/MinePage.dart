@@ -63,10 +63,9 @@ class MinespageWidgetState extends State<MinespageWidget> {
       child: Column(
         children: <Widget>[
           Container(
-            width: 300,
             height: 300,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   width: 90,
