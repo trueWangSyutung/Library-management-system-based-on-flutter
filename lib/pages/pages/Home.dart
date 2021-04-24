@@ -75,15 +75,18 @@ class HomepageWidgetState extends State<HomepageWidget> {
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
+        Color colors = Color.fromARGB(255, Random().nextInt(255),
+            Random().nextInt(255), Random().nextInt(255));
         return Card(
           clipBehavior: Clip.antiAlias,
           child: FlatButton(
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  CupertinoPageRoute(
                       builder: (context) => BookWidget(
                             book: GlobalNumbers.book_list[index],
+                            colors: colors,
                           )));
             },
             child: Container(
@@ -94,8 +97,7 @@ class HomepageWidgetState extends State<HomepageWidget> {
                     height: 190,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, Random().nextInt(255),
-                            Random().nextInt(255), Random().nextInt(255)),
+                        color: colors,
                         borderRadius: BorderRadius.all(Radius.circular(15.0))),
                     child: Text(
                       getVerText(GlobalNumbers.book_list[index].bookName),

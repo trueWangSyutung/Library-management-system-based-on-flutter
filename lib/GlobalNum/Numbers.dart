@@ -11,10 +11,10 @@ class GlobalNumbers {
   static String name = "访客用户";
   static int code = 0;
   static List<Book> book_list = List();
-  static String username = "0";
-  static String password = "0";
+  static String username = "";
+  static String password = "";
   static var quanxian1 = ["", "管理员", "老师", "学生", "注册用户", "普通访客"];
-
+  static int chushihua = 0;
   static getNewBook() async {
     if (GlobalNumbers.book_list.length != 0) {
     } else {

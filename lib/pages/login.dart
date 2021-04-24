@@ -136,12 +136,29 @@ class _RegistPageState extends State<RegistPage> {
                 if (username != "" && password != "") {
                   GlobalNumbers.username = username;
                   GlobalNumbers.password = password;
+                  var fire = File(
+                      "/storage/emulated/0/Android/data/com.example.demo01/files/username.conf");
+                  print(fire.path);
+                  fire.exists().then((value) {
+                    if (!value) {
+                      fire.create();
+                      fire.writeAsString(username);
+                    } else {}
+                  });
+
+                  var fire2 = File(
+                      "/storage/emulated/0/Android/data/com.example.demo01/files/password.conf");
+                  print(fire2.path);
+                  fire2.exists().then((value) {
+                    if (!value) {
+                      fire2.create();
+                      fire2.writeAsString(password);
+                    } else {}
+                  });
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => Welcome(
-                                name: name,
-                              )));
+                          builder: (BuildContext context) => Welcome()));
                 }
               },
             ),

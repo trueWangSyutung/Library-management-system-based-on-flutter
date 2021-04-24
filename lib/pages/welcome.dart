@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:demo01/GlobalNum/Numbers.dart';
 import 'package:demo01/json/LoginBean.dart';
@@ -10,8 +11,6 @@ import 'package:flutter/material.dart';
 import 'pages/MinePage.dart';
 
 class Welcome extends StatelessWidget {
-  String name = "";
-  Welcome({Key key, @required this.name}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -84,6 +83,29 @@ class _WelcomePageState extends State<WelcomePage> {
   get editingController2 => null;
   @override
   Widget build(BuildContext context) {
+    var fire3 = File(
+        "/storage/emulated/0/Android/data/com.example.demo01/files/username.conf");
+    print(fire3.path);
+    fire3.exists().then((value) {
+      if (value) {
+        fire3.readAsString().then((value2) {
+          print(value2);
+          GlobalNumbers.username = value2;
+        });
+      } else {}
+    });
+
+    var fire2 = File(
+        "/storage/emulated/0/Android/data/com.example.demo01/files/password.conf");
+    print(fire2.path);
+    fire2.exists().then((value) {
+      if (value) {
+        fire2.readAsString().then((value2) {
+          GlobalNumbers.password = value2;
+        });
+      } else {}
+    });
+
     _login(GlobalNumbers.username, GlobalNumbers.password).then((value) {
       var b = value;
       GlobalNumbers.name = b[0];

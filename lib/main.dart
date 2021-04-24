@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:demo01/json/Book.dart';
-import 'package:demo01/json/BooksBean.dart';
 import 'package:demo01/pages/login.dart';
+
 import 'package:demo01/pages/regist.dart';
 import 'package:demo01/pages/welcome.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,13 +11,16 @@ import 'GlobalNum/Numbers.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(MyApp());
-  if (Platform.isAndroid) {
-    // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
-    SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+  var fire = File(
+      "/storage/emulated/0/Android/data/com.example.demo01/files/chushihua.conf");
+  print(fire.path);
+  fire.exists().then((value) {
+    if (value) {
+      runApp(Welcome());
+    } else {
+      runApp(MyApp());
+    }
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -33,11 +33,6 @@ class MyApp extends StatelessWidget {
             child: HomePage(),
           ),
         ),
-        routes: {
-          '/welcome': (context) => Welcome(
-                name: "syu",
-              )
-        },
         theme: ThemeData(
             brightness: Brightness.light,
             primaryColor: Colors.blue,
@@ -160,13 +155,18 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 15),
                   ),
                   onPressed: () {
-                    // Navigator.pushAndRemoveUntil(context,  '/welcome', (route) => false);
+                    var fire = File(
+                        "/storage/emulated/0/Android/data/com.example.demo01/files/chushihua.conf");
+                    print(fire.path);
+                    fire.exists().then((value) {
+                      if (!value) {
+                        fire.create();
+                      } else {}
+                    });
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Welcome(
-                                  name: "访客用户",
-                                )));
+                            builder: (BuildContext context) => WelcomePage()));
                   },
                   onLongPress: () {},
                   onHighlightChanged: (value) {},

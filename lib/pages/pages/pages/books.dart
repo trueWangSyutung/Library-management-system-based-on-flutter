@@ -11,9 +11,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatefulWidget {
-  Book book = null;
+  Book book;
+  Color colors;
 
-  BookWidget({Key key, @required this.book}) : super(key: key);
+  BookWidget({Key key, @required this.book, @required this.colors})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -23,15 +25,9 @@ class BookWidget extends StatefulWidget {
 }
 
 class BookWidgetState extends State<BookWidget> {
-  Book book = null;
-  BookWidgetState({@required this.book}) : super();
-  @override
-  deactivate() {
-    super.deactivate();
-    Navigator.pop(
-      context,
-    );
-  }
+  Book book;
+  Color colors;
+  BookWidgetState({@required this.book, @required this.colors}) : super();
 
   @override
   Widget build(BuildContext context) {

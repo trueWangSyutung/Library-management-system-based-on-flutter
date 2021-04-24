@@ -243,20 +243,16 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return FutureBuilder<String>(
-      future: _mycount(GlobalNumbers.user),
-      builder: (context, snapshot) {
-        print(GlobalNumbers.user);
-        if (snapshot.connectionState == ConnectionState.done) {
-          String b = snapshot.data;
-          print(snapshot.data);
-          if (GlobalNumbers.quanxian == "5") {
+    if (GlobalNumbers.username == "" && GlobalNumbers.password == "") {
+      return FutureBuilder<String>(
+        future: _mycount(GlobalNumbers.username),
+        builder: (context, snapshot) {
+          GlobalNumbers.name = "游客";
+          if (snapshot.connectionState == ConnectionState.done) {
+            String b = snapshot.data;
+            print(snapshot.data);
             r = 0;
-          } else {
-            r = int.parse(b) / books[int.parse(GlobalNumbers.quanxian) - 1];
-          }
 
-          if (GlobalNumbers.quanxian == "1") {
             return SingleChildScrollView(
                 child: Container(
               alignment: Alignment.center,
@@ -289,162 +285,250 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                   ),
                   getInformation(b),
                   getGlobl(),
-                  Card(
-                    clipBehavior: Clip.antiAlias,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    ),
-                    child: Container(
-                      height: 85,
-                      margin: EdgeInsets.all(5),
+                ],
+              ),
+            ));
+          } else {
+            // 请求未结束，显示loading
+            return Center(
+              child: Container(
+                  width: 200,
+                  height: 200,
+                  padding: EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 80,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 10,
+                          backgroundColor: Colors.greenAccent[200],
+                        ),
+                      ),
+                      Text(
+                        "加载中",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  )),
+            );
+          }
+        },
+      );
+    } else {
+      return FutureBuilder<String>(
+        future: _mycount(GlobalNumbers.username),
+        builder: (context, snapshot) {
+          print(GlobalNumbers.user);
+          if (snapshot.connectionState == ConnectionState.done) {
+            String b = snapshot.data;
+            print(snapshot.data);
+            if (GlobalNumbers.quanxian == "5") {
+              r = 0;
+            } else {
+              r = int.parse(b) / books[int.parse(GlobalNumbers.quanxian) - 1];
+            }
+
+            if (GlobalNumbers.quanxian == "1") {
+              return SingleChildScrollView(
+                  child: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      //swidth: 300,
+                      height: 300,
+                      margin: EdgeInsets.all(6),
                       decoration: new BoxDecoration(
                           borderRadius:
                               BorderRadius.all(Radius.circular(15.0))),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          FlatButton(
-                              onPressed: () {},
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                margin: EdgeInsets.all(5),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.network_wifi,
-                                      color: Colors.blue,
-                                    ),
-                                    Text(
-                                      "预约管理",
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "借 阅 中 心",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 60,
                                 ),
-                              )),
-                          FlatButton(
-                              onPressed: () {},
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                margin: EdgeInsets.all(5),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.library_books,
-                                      color: Colors.blue,
-                                    ),
-                                    Text(
-                                      "线下借书后台",
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
-                                ),
-                              )),
-                          FlatButton(
-                              onPressed: () {},
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                margin: EdgeInsets.all(5),
-                                alignment: Alignment.center,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.library_add,
-                                      color: Colors.blue,
-                                    ),
-                                    Text(
-                                      "求上架审核",
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
-                                ),
-                              )),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
+                      alignment: Alignment.centerLeft,
                     ),
-                  )
-                ],
-              ),
-            ));
-          } else {
-            return SingleChildScrollView(
-                child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    //swidth: 300,
-                    height: 300,
-                    margin: EdgeInsets.all(6),
-                    decoration: new BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
+                    getInformation(b),
+                    getGlobl(),
+                    Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                      child: Container(
+                        height: 85,
+                        margin: EdgeInsets.all(5),
+                        decoration: new BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0))),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "借 阅 中 心",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 60,
-                              ),
-                            ),
+                            FlatButton(
+                                onPressed: () {},
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: EdgeInsets.all(5),
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.network_wifi,
+                                        color: Colors.blue,
+                                      ),
+                                      Text(
+                                        "预约管理",
+                                        style: TextStyle(fontSize: 10),
+                                      )
+                                    ],
+                                  ),
+                                )),
+                            FlatButton(
+                                onPressed: () {},
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: EdgeInsets.all(5),
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.library_books,
+                                        color: Colors.blue,
+                                      ),
+                                      Text(
+                                        "线下借书后台",
+                                        style: TextStyle(fontSize: 10),
+                                      )
+                                    ],
+                                  ),
+                                )),
+                            FlatButton(
+                                onPressed: () {},
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: EdgeInsets.all(5),
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.library_add,
+                                        color: Colors.blue,
+                                      ),
+                                      Text(
+                                        "求上架审核",
+                                        style: TextStyle(fontSize: 10),
+                                      )
+                                    ],
+                                  ),
+                                )),
                           ],
                         ),
-                      ],
-                    ),
-                    alignment: Alignment.centerLeft,
-                  ),
-                  getInformation(b),
-                  getGlobl(),
-                ],
-              ),
-            ));
-          }
-        } else {
-          // 请求未结束，显示loading
-          return Center(
-            child: Container(
-                width: 200,
-                height: 200,
-                padding: EdgeInsets.all(20),
-                alignment: Alignment.center,
-                decoration: new BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 80,
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 10,
-                        backgroundColor: Colors.greenAccent[200],
-                      ),
-                    ),
-                    Text(
-                      "加载中",
-                      style: TextStyle(
-                        fontSize: 15,
                       ),
                     )
                   ],
-                )),
-          );
-        }
-      },
-    );
+                ),
+              ));
+            } else {
+              return SingleChildScrollView(
+                  child: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      //swidth: 300,
+                      height: 300,
+                      margin: EdgeInsets.all(6),
+                      decoration: new BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "借 阅 中 心",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                  fontSize: 60,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.centerLeft,
+                    ),
+                    getInformation(b),
+                    getGlobl(),
+                  ],
+                ),
+              ));
+            }
+          } else {
+            // 请求未结束，显示loading
+            return Center(
+              child: Container(
+                  width: 200,
+                  height: 200,
+                  padding: EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 80,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 10,
+                          backgroundColor: Colors.greenAccent[200],
+                        ),
+                      ),
+                      Text(
+                        "加载中",
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      )
+                    ],
+                  )),
+            );
+          }
+        },
+      );
+    }
   }
 
   void addButtonClick() {
