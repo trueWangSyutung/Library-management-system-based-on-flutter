@@ -6,6 +6,7 @@ import 'package:demo01/json/LoginBean.dart';
 import 'package:dio/dio.dart';
 
 class GlobalNumbers {
+  static int currentIndex = 0;
   static String quanxian = '5';
   static String user = "ghost";
   static String name = "访客用户";

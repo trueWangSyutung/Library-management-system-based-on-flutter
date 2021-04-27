@@ -20,12 +20,12 @@ class HomepageWidget extends StatefulWidget {
 class HomepageWidgetState extends State<HomepageWidget> {
   int count = 0;
   static String getShifoujiechu(String i) {
-    var isjiechu = ["已借出", "未借出"];
+    var isjiechu = ["仍有库存", "已全部借出"];
 
-    if (i == "0") {
-      return isjiechu[1];
+    if (int.parse(i) > 0) {
+      return isjiechu[0] + i + "本";
     } else {
-      return isjiechu[0];
+      return isjiechu[1];
     }
   }
 

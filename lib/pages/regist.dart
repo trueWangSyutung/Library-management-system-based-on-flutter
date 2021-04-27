@@ -95,13 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(fontSize: 26.0, color: Colors.green),
                 onChanged: (text) {
                   username = text;
-
-                  //长度变化
-                  //print(text.length);
                 },
                 onSubmitted: (text) {
                   username = text;
-                  //  / print("内容提交时回调");
                 },
                 decoration: InputDecoration(
                     filled: true,
@@ -233,6 +229,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () {
                   _regist(username, password, repassword, name);
+                  Navigator.pop(context);
                 }),
             width: 300,
             height: 60,

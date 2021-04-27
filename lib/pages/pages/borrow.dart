@@ -1,5 +1,7 @@
 import 'package:demo01/GlobalNum/Numbers.dart';
 import 'package:demo01/internet/Toast.dart';
+import 'package:demo01/pages/pages/pages/BookList.dart';
+import 'package:demo01/pages/pages/pages/BorrowList%20copy.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -148,31 +150,16 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
         decoration: new BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15.0))),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             FlatButton(
-                onPressed: () {},
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  margin: EdgeInsets.all(5),
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.network_wifi,
-                        color: Colors.blue,
-                      ),
-                      Text(
-                        "网上预约",
-                        style: TextStyle(fontSize: 10),
-                      )
-                    ],
-                  ),
-                )),
-            FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  //BorrowListWidget
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => BorrowListWidget()));
+                },
                 child: Container(
                   width: 50,
                   height: 50,
@@ -186,7 +173,7 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                         color: Colors.blue,
                       ),
                       Text(
-                        "线下借书",
+                        "借书申请",
                         style: TextStyle(fontSize: 10),
                       )
                     ],
@@ -214,7 +201,12 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                   ),
                 )),
             FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => BookListWidget()));
+                },
                 child: Container(
                   width: 50,
                   height: 50,
@@ -383,7 +375,7 @@ class BorrowpageWidgetState extends State<BorrowpageWidget> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0))),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             FlatButton(
                                 onPressed: () {},

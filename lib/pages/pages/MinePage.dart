@@ -5,6 +5,7 @@ import 'package:demo01/GlobalNum/Numbers.dart';
 import 'package:demo01/json/LoginBean.dart';
 import 'package:demo01/pages/login.dart';
 import 'package:demo01/pages/regist.dart';
+import 'package:demo01/pages/welcome.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,8 @@ class MinespageWidget extends StatefulWidget {
     return MinespageWidgetState();
   }
 }
+
+enum Action { Ok, Cancel }
 
 class MinespageWidgetState extends State<MinespageWidget> {
   int count = 2;
@@ -64,7 +67,6 @@ class MinespageWidgetState extends State<MinespageWidget> {
       children: [
         Card(
           clipBehavior: Clip.antiAlias,
-          elevation: 20.0,
           child: Container(
             child: ListView.separated(
                 shrinkWrap: true,
@@ -93,7 +95,6 @@ class MinespageWidgetState extends State<MinespageWidget> {
         ),
         Card(
           clipBehavior: Clip.antiAlias,
-          elevation: 20.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
@@ -120,54 +121,6 @@ class MinespageWidgetState extends State<MinespageWidget> {
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
           ),
         ),
-        Card(
-          clipBehavior: Clip.antiAlias,
-          elevation: 20.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          ),
-          child: Container(
-            child: ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                separatorBuilder: (BuildContext context, int index) =>
-                    Container(
-                      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                      child: Divider(height: 2.0, color: Colors.grey),
-                    ),
-                itemCount: zhuxiao.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return FlatButton(
-                    onPressed: () {
-                      if (index == 0) {
-                        var fire3 = File(
-                            "/storage/emulated/0/Android/data/com.example.demo01/files/username.conf");
-                        print(fire3.path);
-                        fire3.exists().then((value) {
-                          if (value) {
-                            fire3.delete();
-                          } else {}
-                        });
-
-                        var fire2 = File(
-                            "/storage/emulated/0/Android/data/com.example.demo01/files/password.conf");
-                        print(fire2.path);
-                        fire2.exists().then((value) {
-                          if (value) {
-                            fire2.delete();
-                          } else {}
-                        });
-                      } else {}
-                    },
-                    child: Text(zhuxiao[index], style: TextStyle(fontSize: 20)),
-                  );
-                }),
-            margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
-            padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-            decoration: new BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          ),
-        )
       ],
     );
   }
@@ -297,12 +250,117 @@ class MinespageWidgetState extends State<MinespageWidget> {
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
             ),
-            getBase()
+            getBase(),
+            Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              ),
+              child: Container(
+                width: 400,
+                child: FlatButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return new Container(
+                            height: 200.0,
+                            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                            decoration: new BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30.0))),
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    child: FlatButton(
+                                      child: Text(
+                                        "取   消",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 25),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context, '取消');
+                                        ;
+                                      },
+                                      onLongPress: () {},
+                                      onHighlightChanged: (value) {},
+                                    ),
+                                    height: 60,
+                                    margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    alignment: Alignment.center,
+                                    decoration: new BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30.0))),
+                                  ),
+                                  Container(
+                                    child: FlatButton(
+                                      child: Text(
+                                        "确   定",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 25),
+                                      ),
+                                      onPressed: () {
+                                        GlobalNumbers.username = "";
+                                        GlobalNumbers.password = "";
+
+                                        var fire3 = File(
+                                            "/storage/emulated/0/Android/data/com.example.demo01/files/username.conf");
+                                        print(fire3.path);
+                                        fire3.exists().then((value) {
+                                          if (value) {
+                                            fire3.delete();
+                                          } else {}
+                                        });
+
+                                        var fire2 = File(
+                                            "/storage/emulated/0/Android/data/com.example.demo01/files/password.conf");
+                                        print(fire2.path);
+                                        fire2.exists().then((value) {
+                                          if (value) {
+                                            fire2.delete();
+                                          } else {}
+                                        });
+                                        GlobalNumbers.name = "游客";
+                                        Navigator.pop(context, '确定');
+                                      },
+                                      onLongPress: () {},
+                                      onHighlightChanged: (value) {},
+                                    ),
+                                    height: 60,
+                                    margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                    alignment: Alignment.center,
+                                    decoration: new BoxDecoration(
+                                        color: Colors.lightBlue,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30.0))),
+                                  ),
+                                ],
+                              ),
+                            ));
+                      },
+                    ).then((val) {
+                      // 打印 点击返回的数据
+                      print(val);
+                    });
+                  },
+                  child: Text("注销账号", style: TextStyle(fontSize: 20)),
+                ),
+                margin: EdgeInsets.fromLTRB(18, 10, 18, 0),
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              ),
+            )
           ],
         ),
       ));
     } else {
-      GlobalNumbers.user = "游客";
+      GlobalNumbers.name = "游客";
       return SingleChildScrollView(
           child: Container(
         alignment: Alignment.center,
@@ -316,8 +374,8 @@ class MinespageWidgetState extends State<MinespageWidget> {
                   Container(
                     width: 90,
                     height: 90,
-                    child:
-                        Text("游客".split('')[0], style: TextStyle(fontSize: 60)),
+                    child: Text(GlobalNumbers.name.split('')[0],
+                        style: TextStyle(fontSize: 60)),
                     alignment: Alignment.center,
                     decoration: new BoxDecoration(
                         color: Colors.lightBlue,

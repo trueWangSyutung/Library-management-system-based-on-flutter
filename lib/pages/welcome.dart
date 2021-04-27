@@ -117,19 +117,19 @@ class _WelcomePageState extends State<WelcomePage> {
       appBar: PreferredSize(child: AppBar(), preferredSize: Size.fromHeight(0)),
       bottomNavigationBar: BottomNavigationBar(
         items: items,
-        currentIndex: currentIndex,
+        currentIndex: GlobalNumbers.currentIndex,
         onTap: onTap,
         unselectedItemColor: Colors.blueGrey,
         selectedItemColor: Colors.lightBlue,
         type: BottomNavigationBarType.fixed,
       ),
-      body: bodyLists[currentIndex],
+      body: bodyLists[GlobalNumbers.currentIndex],
     );
   }
 
   void onTap(int index) {
     setState(() {
-      currentIndex = index;
+      GlobalNumbers.currentIndex = index;
     });
   }
 }
